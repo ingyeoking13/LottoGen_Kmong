@@ -1,32 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace LottoGen_Kmong.LottoLogic
 {
     public class LogicWithAllPossibleNumberSet : ILogicWithNumberSet
     {
-        public Rule_minmaxArgs minmax_rule; // 최소 최대
         public gameArgs gameRule; //  A to B, 45 to 6
-        public IEnumerable<int> wanna_Set;
         private Action<IEnumerable<byte>> sendResult;
 
         public Action<IEnumerable<byte>> SendResult { get => sendResult; set => sendResult = value; }
+        public IEnumerable<int> Wanna_Set { get; set; }
+        public Rule_minmaxArgs Minmax_rule { get; set; }
 
         public LogicWithAllPossibleNumberSet(Rule_minmaxArgs minmax_rule, gameArgs gameRule, IEnumerable<int> wanna_Set)
         {
-            this.minmax_rule = minmax_rule;
+            Minmax_rule = minmax_rule;
+            Wanna_Set = wanna_Set;
             this.gameRule = gameRule;
-            this.wanna_Set = wanna_Set;
         }
 
         public void Calculate()
         {
             Random random = new Random(DateTime.Now.Millisecond);
-            int extract = random.Next(minmax_rule.min, minmax_rule.max + 1);
+            int extract = random.Next(Minmax_rule.min, Minmax_rule.max + 1);
 
             // wanna_Set 에서 extract 갯수만큼 빼줌 
-            bool[] chk = new bool[wanna_Set.Count()];
+            bool[] chk = new bool[Wanna_Set.Count()];
 
             SelectExtractNumberFromSet(0, extract, chk, 0);
         }
@@ -39,7 +40,7 @@ namespace LottoGen_Kmong.LottoLogic
                 return;
             }
 
-            for (int i = j; i < wanna_Set.Count(); i++)
+            for (int i = j; i < Wanna_Set.Count(); i++)
             {
                 if (chk[i]) continue;
 
@@ -60,12 +61,12 @@ namespace LottoGen_Kmong.LottoLogic
             {
                 if (chk[i])
                 {
-                    result.Add((byte)wanna_Set.ElementAt(i));
-                    total[wanna_Set.ElementAt(i)] = true;
+                    result.Add((byte)Wanna_Set.ElementAt(i));
+                    total[Wanna_Set.ElementAt(i)] = true;
                     k--;
-                    Console.Write($"{wanna_Set.ElementAt(i)} ");
+                    Console.Write($"{Wanna_Set.ElementAt(i)} ");
                 }
-                else total[wanna_Set.ElementAt(i)] = true;
+                else total[Wanna_Set.ElementAt(i)] = true;
             }
             Console.WriteLine("가 선택되었습니다.");
 
@@ -101,5 +102,7 @@ namespace LottoGen_Kmong.LottoLogic
                 total[i] = false;
             }
         }
+
+        public void CalcuateWithExistNumberset(StreamReader streamReader) { throw new NotImplementedException(); }
     }
 }

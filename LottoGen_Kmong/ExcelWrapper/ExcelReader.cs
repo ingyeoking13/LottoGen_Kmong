@@ -16,11 +16,6 @@ namespace LottoGen_Kmong.ExcelWrapper
 
         private StartExcelReadPosition startExcelReadPosition = new StartExcelReadPosition();
 
-        public ExcelReader(FileInfo excelFile)
-        {
-            this.excelFile = excelFile;
-        }
-
         public gameArgs Gameargs { get => gameargs; set => gameargs = value; }
         public int GroupNumber {
             get => groupNumber;
@@ -29,6 +24,10 @@ namespace LottoGen_Kmong.ExcelWrapper
                 if (value <= 0) throw new ArgumentException("그룹수를 정확히 입력해주세요. "+ Environment.NewLine + "또는, 0 보다 큰 정수여야 합니다.");
                 groupNumber = value;
             }
+        }
+        public ExcelReader(FileInfo excelFile)
+        {
+            this.excelFile = excelFile;
         }
 
         public void ReadGameArgsAndGroupNumberFromfilepath()

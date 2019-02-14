@@ -54,15 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelWrapper\ExcelReader.cs" />
+    <Compile Include="LottoLogic\CoreLogic\LogicWithExistNumberSet.cs" />
+    <Compile Include="LottoLogic\LottologicWithAllNumberSet.cs" />
+    <Compile Include="LottoLogic\LottologicWithImportedDataSet.cs" />
     <Compile Include="NotePadWriterANDReader\notePadAccessor.cs" />
-    <Compile Include="NotePadWriterANDReader\notePadReader.cs" />
+    <Compile Include="NotePadWriterANDReader\notePadLineReader.cs" />
     <Compile Include="NotePadWriterANDReader\notePadWriter.cs" />
     <Compile Include="ExcelWrapper\StartExcelReadPosition.cs" />
     <Compile Include="Helper\IntToStringConversionByBase.cs" />
     <Compile Include="Model\gameArgs.cs" />
     <Compile Include="Model\gameGroup.cs" />
-    <Compile Include="LottoLogic\ILogicWithNumberSet.cs" />
-    <Compile Include="LottoLogic\LogicWithAllPossibleNumberSet.cs" />
+    <Compile Include="LottoLogic\CoreLogic\ILogicWithNumberSet.cs" />
+    <Compile Include="LottoLogic\CoreLogic\LogicWithAllPossibleNumberSet.cs" />
     <Compile Include="LottoLogic\LottoLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

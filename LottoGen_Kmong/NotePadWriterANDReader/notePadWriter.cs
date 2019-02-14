@@ -51,7 +51,7 @@ namespace LottoGen_Kmong.ExcelWrapper
         {
             if (CheckFileExist(name)) deleteFile(name);
             FilePath = name;
-
+            
             if (file != null) file.Dispose();
             file = new StreamWriter(name, true);
         }
