@@ -54,14 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelWrapper\ExcelReader.cs" />
-    <Compile Include="ExcelWrapper\notePadWriter.cs" />
+    <Compile Include="NotePadWriter\notePadWriter.cs" />
+    <Compile Include="ExcelWrapper\StartExcelReadPosition.cs" />
     <Compile Include="Helper\IntToStringConversionByBase.cs" />
-    <Compile Include="LottoLogic\gameArgs.cs" />
-    <Compile Include="LottoLogic\gameGroup.cs" />
+    <Compile Include="Model\gameArgs.cs" />
+    <Compile Include="Model\gameGroup.cs" />
+    <Compile Include="LottoLogic\ILogicWithNumberSet.cs" />
+    <Compile Include="LottoLogic\LogicWithAllPossibleNumberSet.cs" />
     <Compile Include="LottoLogic\LottoLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LottoLogic\Rule_minmaxArgs.cs" />
+    <Compile Include="Model\Rule_minmaxArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

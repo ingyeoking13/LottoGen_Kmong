@@ -14,22 +14,11 @@ namespace LottoGen_Kmong.ExcelWrapper
         private gameArgs gameargs;
         private int groupNumber;
 
-        private readonly int default_GroupReader_Row_start = 18;
-        private readonly string default_GroupReader_Col_start = "D";
-
-        private readonly int default_setReader_Row_start = 18;
-        private readonly char default_setReader_Col_start = 'E';
-
-        private readonly int default_mnReader_Row_start = 18;
-        private readonly string default_mnReader_Col_start = "B";
-
-        private readonly int default_mxReader_Row_start = 18;
-        private readonly string default_mxReader_Col_start = "C";
+        private StartExcelReadPosition startExcelReadPosition = new StartExcelReadPosition();
 
         public ExcelReader(FileInfo excelFile)
         {
             this.excelFile = excelFile;
-
         }
 
         public gameArgs Gameargs { get => gameargs; set => gameargs = value; }
@@ -60,16 +49,16 @@ namespace LottoGen_Kmong.ExcelWrapper
                 for (int i = 0; i < groupNumber; i++)
                 {
 
-                    int mn = ReadCellValueInt(worksheet, default_mnReader_Col_start + (default_mnReader_Row_start + i).ToString(), "mnNumber");
-                    int mx = ReadCellValueInt(worksheet, default_mxReader_Col_start + (default_mxReader_Row_start + i).ToString(), "mxNumber");
+                    int mn = ReadCellValueInt(worksheet, startExcelReadPosition.default_mnReader_Col_start + (startExcelReadPosition.default_mnReader_Row_start + i).ToString(), "mnNumber");
+                    int mx = ReadCellValueInt(worksheet, startExcelReadPosition.default_mxReader_Col_start + (startExcelReadPosition.default_mxReader_Row_start + i).ToString(), "mxNumber");
 
-                    int set_Count = ReadCellValueInt(worksheet, default_GroupReader_Col_start + (default_GroupReader_Row_start + i).ToString());
+                    int set_Count = ReadCellValueInt(worksheet, startExcelReadPosition.default_GroupReader_Col_start + (startExcelReadPosition.default_GroupReader_Row_start + i).ToString());
                     List<int> number_Set = new List<int>();
                     for (int j = 0; j < set_Count; j++)
                     {
                         number_Set.Add(
                             ReadCellValueInt(worksheet,
-                            IntToStringConversionByBase.IntToStringConversion(j, 26, default_setReader_Col_start) + (default_setReader_Row_start ).ToString()
+                            IntToStringConversionByBase.IntToStringConversion(j, 26, startExcelReadPosition.default_setReader_Col_start) + (startExcelReadPosition.default_setReader_Row_start ).ToString()
                                 )
                             );
                     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace LottoGen_Kmong.ExcelWrapper
@@ -16,10 +17,10 @@ namespace LottoGen_Kmong.ExcelWrapper
             } 
             file = new StreamWriter(filePath, true);
         }
+
         ~notePadWriter()
         {
             file.Dispose();
-
         }
 
         public void WriteFile(IEnumerable<byte> list)
@@ -29,6 +30,17 @@ namespace LottoGen_Kmong.ExcelWrapper
                 file.Write(i + " ");
             }
             file.WriteLine();
+
+            if(checkFileSizeTooBig())
+            {
+
+            }
+        }
+        private bool checkFileSizeTooBig()
+        {
+
+            Console.WriteLine(new FileInfo(filePath).Length);
+            return true;
         }
     }
 }

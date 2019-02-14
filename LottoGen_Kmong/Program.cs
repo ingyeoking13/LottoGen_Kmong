@@ -22,14 +22,11 @@ namespace LottoGen_Kmong
             {
                 notePadWriter writer = new notePadWriter($"output{cnt}.txt");
                 Lottologic lottoLogic = new Lottologic(
-                    reader.Gameargs,
-                    i.rule_MinmaxArgs,
-                    i.numberSet,
+                    new LogicWithAllPossibleNumberSet(i.rule_MinmaxArgs, reader.Gameargs, i.numberSet),
                     writer.WriteFile
                 );
                 Console.WriteLine(bg + " 번째 그룹 작업중입니다."); 
-                lottoLogic.calculate();
-
+                lottoLogic.doCalculate();
             }
         }
     }
