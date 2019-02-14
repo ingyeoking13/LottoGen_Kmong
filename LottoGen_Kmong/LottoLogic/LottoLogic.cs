@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace LottoGen_Kmong.LottoLogic
 {
@@ -13,10 +12,10 @@ namespace LottoGen_Kmong.LottoLogic
         {
             LogicWithNumberSet = logicWithNumberSet;
             this.writerDoWrite = writerDoWrite;
-            LogicWithNumberSet.sendResult += giveListToNotepadWriter;
+            LogicWithNumberSet.SendResult += giveListToNotepadWriter;
         }
 
-        ~Lottologic() { LogicWithNumberSet.sendResult -= giveListToNotepadWriter; }
+        ~Lottologic() { LogicWithNumberSet.SendResult -= giveListToNotepadWriter; }
 
         public void doCalculate()
         {
@@ -27,8 +26,5 @@ namespace LottoGen_Kmong.LottoLogic
         {
             writerDoWrite(number_list);
         }
-        
     }
-
-
 }

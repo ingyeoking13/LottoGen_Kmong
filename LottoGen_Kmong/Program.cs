@@ -20,7 +20,7 @@ namespace LottoGen_Kmong
             int cnt = 1;
             foreach (var i in reader.ReturnNumberSetAndMinMax())
             {
-                notePadWriter writer = new notePadWriter($"output{cnt}.txt");
+                notePadWriter writer = new notePadWriter($"output{cnt}A.txt");
                 Lottologic lottoLogic = new Lottologic(
                     new LogicWithAllPossibleNumberSet(i.rule_MinmaxArgs, reader.Gameargs, i.numberSet),
                     writer.WriteFile

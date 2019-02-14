@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelWrapper\ExcelReader.cs" />
-    <Compile Include="NotePadWriter\notePadWriter.cs" />
+    <Compile Include="NotePadWriterANDReader\notePadAccessor.cs" />
+    <Compile Include="NotePadWriterANDReader\notePadReader.cs" />
+    <Compile Include="NotePadWriterANDReader\notePadWriter.cs" />
     <Compile Include="ExcelWrapper\StartExcelReadPosition.cs" />
     <Compile Include="Helper\IntToStringConversionByBase.cs" />
     <Compile Include="Model\gameArgs.cs" />

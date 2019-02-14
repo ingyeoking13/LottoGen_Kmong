@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LottoGen_Kmong.LottoLogic
 {
@@ -11,6 +9,9 @@ namespace LottoGen_Kmong.LottoLogic
         public Rule_minmaxArgs minmax_rule; // 최소 최대
         public gameArgs gameRule; //  A to B, 45 to 6
         public IEnumerable<int> wanna_Set;
+        private Action<IEnumerable<byte>> sendResult;
+
+        public Action<IEnumerable<byte>> SendResult { get => sendResult; set => sendResult = value; }
 
         public LogicWithAllPossibleNumberSet(Rule_minmaxArgs minmax_rule, gameArgs gameRule, IEnumerable<int> wanna_Set)
         {
@@ -100,7 +101,5 @@ namespace LottoGen_Kmong.LottoLogic
                 total[i] = false;
             }
         }
-
-
     }
 }
