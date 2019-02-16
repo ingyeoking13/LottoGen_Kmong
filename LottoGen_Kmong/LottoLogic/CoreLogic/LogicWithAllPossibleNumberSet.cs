@@ -24,12 +24,14 @@ namespace LottoGen_Kmong.LottoLogic
         public void Calculate()
         {
             Random random = new Random(DateTime.Now.Millisecond);
-            int extract = random.Next(Minmax_rule.min, Minmax_rule.max + 1);
 
             // wanna_Set 에서 extract 갯수만큼 빼줌 
             bool[] chk = new bool[Wanna_Set.Count()];
 
-            SelectExtractNumberFromSet(0, extract, chk, 0);
+            for (int i = Minmax_rule.min; i <= Minmax_rule.max; i++)
+            {
+                SelectExtractNumberFromSet(0, i, chk, 0);
+            }
         }
 
         private void SelectExtractNumberFromSet(int depth, int depth_max, bool[] chk, int j)

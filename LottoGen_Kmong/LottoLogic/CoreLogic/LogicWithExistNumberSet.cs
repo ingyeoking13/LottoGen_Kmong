@@ -16,6 +16,13 @@ namespace LottoGen_Kmong.LottoLogic
         public IEnumerable<int> Wanna_Set { get => wanna_set; set =>wanna_set =value; }
         public Rule_minmaxArgs Minmax_rule { get => minmax_rule; set => minmax_rule = value; }
 
+        public LogicWithExistNumberSet(
+            Rule_minmaxArgs minmax_rule, IEnumerable<int> wanna_Set)
+        {
+            Minmax_rule = minmax_rule;
+            Wanna_Set = wanna_Set;
+        }
+
         public notePadLineReader lineReader = new notePadLineReader();
 
         public void Calculate() { throw new NotImplementedException(); }

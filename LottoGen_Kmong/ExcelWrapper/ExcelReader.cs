@@ -40,8 +40,9 @@ namespace LottoGen_Kmong.ExcelWrapper
             }
         }
 
-        public IEnumerable<gameGroup> ReturnNumberSetAndMinMax()
+        public List<gameGroup> ReturnNumberSetAndMinMax()
         {
+            List<gameGroup> ret = new List<gameGroup>();
             using (var package = new ExcelPackage(excelFile))
             {
                 var worksheet= getWorkSheet(package);
@@ -57,14 +58,14 @@ namespace LottoGen_Kmong.ExcelWrapper
                     {
                         number_Set.Add(
                             ReadCellValueInt(worksheet,
-                            IntToStringConversionByBase.IntToStringConversion(j, 26, startExcelReadPosition.default_setReader_Col_start) + (startExcelReadPosition.default_setReader_Row_start ).ToString()
+                            IntToStringConversionByBase.IntToStringConversion(j, 26, startExcelReadPosition.default_setReader_Col_start) + (startExcelReadPosition.default_setReader_Row_start +i).ToString()
                                 )
                             );
                     }
-
-                    yield return new gameGroup(new Rule_minmaxArgs(mn, mx), number_Set);
+                    ret.Add( new gameGroup(new Rule_minmaxArgs(mn, mx), number_Set));
                 }
             }
+            return ret;
         }
 
         private ExcelWorksheet getWorkSheet(ExcelPackage package)

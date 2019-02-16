@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using LottoGen_Kmong.NotePadWriterANDReader;
 
-namespace LottoGen_Kmong.ExcelWrapper
+namespace LottoGen_Kmong.NotePadWriterANDReader
 {
     public class notePadWriter : notePadAccessor
     {
-        private StreamWriter file;
+        private StreamWriter fileWriter;
         private static int HIT = (int)2e6;
         private int _hit = 0;
         private const long FILESIZEMAX = 214748364; // 200MB to Bytes
@@ -18,25 +18,26 @@ namespace LottoGen_Kmong.ExcelWrapper
             CheckIfFileExistOrDeleteItAndSetIt(filePath);
         }
 
-        ~notePadWriter()
+        public void CloseWriter()
         {
-            file.Dispose();
+            fileWriter.Dispose();
         }
 
         public void WriteFile(IEnumerable<byte> list)
         {
             foreach (var i in list)
             {
-                file.Write(i + " ");
+                fileWriter.Write(i + " ");
             }
-            file.WriteLine();
+            fileWriter.WriteLine();
             _hit++;
             if (_hit > HIT)
             { 
                 if (CheckFileSizeTooBig())
                 {
-                    Console.WriteLine("HIT 200MB!");
                     IncreaseFileName();
+                    Console.WriteLine("HIT 200MB!");
+                    Console.WriteLine($"{FilePath}를 생성했습니다.");
                 }
                 _hit = 0;
             }
@@ -52,8 +53,8 @@ namespace LottoGen_Kmong.ExcelWrapper
             if (CheckFileExist(name)) deleteFile(name);
             FilePath = name;
             
-            if (file != null) file.Dispose();
-            file = new StreamWriter(name, true);
+            if (fileWriter != null) fileWriter.Dispose();
+            fileWriter = new StreamWriter(name, true);
         }
 
         private void IncreaseFileName()
@@ -67,5 +68,6 @@ namespace LottoGen_Kmong.ExcelWrapper
             + ".txt";
             CheckIfFileExistOrDeleteItAndSetIt(newFilePath);
         }
+
     }
 }

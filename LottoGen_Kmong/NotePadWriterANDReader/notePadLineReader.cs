@@ -11,11 +11,15 @@ namespace LottoGen_Kmong.NotePadWriterANDReader
             string line;
             while((line = reader.ReadLine()) != null)
             {
-                string[] numbers = line.Split(' ');
-                byte[] ret = new byte[numbers.Length];
+                string[] numbers = line.Split('\t', ' ');
+                List<byte> ret = new List<byte>();
                 for(int i= 0; i<numbers.Length; i++ )
                 {
-                    ret[i] = byte.Parse(numbers[i]);
+                    if (numbers[i] == "" || numbers[i] == null || numbers[i] == Environment.NewLine)
+                    {
+                        continue;
+                    }
+                    ret.Add(byte.Parse(numbers[i]));
                 }
                 yield return ret;
             }
