@@ -65,9 +65,13 @@
   <ItemGroup>
     <Compile Include="ExcelWrapper\ExcelReader.cs" />
     <Compile Include="Helper\WriterMover.cs" />
-    <Compile Include="LottoLogic\CoreLogic\LogicWithExistNumberSet.cs" />
-    <Compile Include="LottoLogic\LottologicWithAllNumberSet.cs" />
-    <Compile Include="LottoLogic\LottologicWithImportedDataSet.cs" />
+    <Compile Include="LottoSolution\AbstractLottoSolution.cs" />
+    <Compile Include="LottoSolution\LottoLogic\CoreLogic\CreateAllPossibleNumber.cs" />
+    <Compile Include="LottoSolution\LottoLogic\CoreLogic\LogicWithExistNumberSet.cs" />
+    <Compile Include="LottoSolution\LottoLogic\IFilesListHave.cs" />
+    <Compile Include="LottoSolution\LottoLogic\LottologicWithImportedDataSet.cs" />
+    <Compile Include="LottoSolution\LottoSolutionWithAllNumberSet.cs" />
+    <Compile Include="LottoSolution\LottoSolutionWithImportData.cs" />
     <Compile Include="NotePadWriterANDReader\notePadAccessor.cs" />
     <Compile Include="NotePadWriterANDReader\notePadLineReader.cs" />
     <Compile Include="NotePadWriterANDReader\notePadWriter.cs" />
@@ -75,12 +79,13 @@
     <Compile Include="Helper\IntToStringConversionByBase.cs" />
     <Compile Include="Model\gameArgs.cs" />
     <Compile Include="Model\gameGroup.cs" />
-    <Compile Include="LottoLogic\CoreLogic\ILogicWithNumberSet.cs" />
-    <Compile Include="LottoLogic\CoreLogic\LogicWithAllPossibleNumberSet.cs" />
-    <Compile Include="LottoLogic\LottoLogic.cs" />
+    <Compile Include="LottoSolution\LottoLogic\CoreLogic\ILogicWithNumberSet.cs" />
+    <Compile Include="LottoSolution\LottoLogic\LottoLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Rule_minmaxArgs.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

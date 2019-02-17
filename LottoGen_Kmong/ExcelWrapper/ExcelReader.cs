@@ -1,5 +1,6 @@
 ﻿using LottoGen_Kmong.Helper;
 using LottoGen_Kmong.LottoLogic;
+using LottoGen_Kmong.Services;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace LottoGen_Kmong.ExcelWrapper
             get => groupNumber;
             set
             {
-                if (value <= 0) throw new ArgumentException("그룹수를 정확히 입력해주세요. "+ Environment.NewLine + "또는, 0 보다 큰 정수여야 합니다.");
+                if (value <= 0)  ExceptionDialogService.getInstance().showMessageAndAllert("그룹수를 정확히 입력해주세요. "+ Environment.NewLine + "또는, 0 보다 큰 정수여야 합니다.");
                 groupNumber = value;
             }
         }
@@ -85,9 +86,11 @@ namespace LottoGen_Kmong.ExcelWrapper
             var value = worksheet.Cells[pos].Value;
             if( value == null)
             {
-                if (name == nameof(ReturnNumberSetAndMinMax)) throw new ArgumentException("게임 set은 공백일 수 없습니다.");
-                else if (name == nameof(ReadGameArgsAndGroupNumberFromfilepath)) throw new ArgumentException("게임의 유형 또는 그룹 수는 공백 일 수 없습니다.");
-                else if (name == "mnNumber" || name == "mxNumber") throw new ArgumentException("게임 추출 최소값 최대값은 공백 일 수 없습니다.");
+                string message=$"UNKOWN ERROR FROM {name}";
+                if (name == nameof(ReturnNumberSetAndMinMax)) message = "게임 set은 공백일 수 없습니다.";
+                else if (name == nameof(ReadGameArgsAndGroupNumberFromfilepath))   message = "게임의 유형 또는 그룹 수는 공백 일 수 없습니다.";
+                else if (name == "mnNumber" || name == "mxNumber") message = "게임 추출 최소값 최대값은 공백 일 수 없습니다.";
+                ExceptionDialogService.getInstance().showMessageAndAllert(message);
             }
 
             chk = Int32.TryParse(value.ToString(), out ret);
@@ -95,9 +98,11 @@ namespace LottoGen_Kmong.ExcelWrapper
 
             else if ( chk == false || ret < 0)
             {
-                if (name == nameof(ReturnNumberSetAndMinMax)) throw new ArgumentException("게임 set은 숫자 외의 문자이거나, 음수 일 수 없습니다.");
-                else if (name == nameof(ReadGameArgsAndGroupNumberFromfilepath)) throw new ArgumentException("게임의 유형 또는 그룹 수는 숫자 외의 문자이거나, 음수 일 수 없습니다.");
-                else if (name == "mnNumber" || name == "mxNumber") throw new ArgumentException("게임 추출 최소값 최대값은 숫자 외의 문자이거나, 음수 일 수 없습니다.");
+                string message = $"UNKOWN ERROR FROM {name}";
+                if (name == nameof(ReturnNumberSetAndMinMax)) message= "게임 set은 숫자 외의 문자이거나, 음수 일 수 없습니다.";
+                else if (name == nameof(ReadGameArgsAndGroupNumberFromfilepath)) message= "게임의 유형 또는 그룹 수는 숫자 외의 문자이거나, 음수 일 수 없습니다.";
+                else if (name == "mnNumber" || name == "mxNumber")  message = "게임 추출 최소값 최대값은 숫자 외의 문자이거나, 음수 일 수 없습니다.";
+                ExceptionDialogService.getInstance().showMessageAndAllert(message);
             }
             return 0;
         }

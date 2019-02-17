@@ -7,11 +7,11 @@ namespace LottoGen_Kmong.NotePadWriterANDReader
         private int counter = 0;
         private string filePath;
 
+        public void deleteFile(string name) { File.Delete(name); }
         public int Counter { get => counter; set => counter = value; }
         public string FilePath { get => filePath; set => filePath = value; }
 
         protected bool CheckFileExist(string name) { return File.Exists(name); }
-        protected void deleteFile(string name) { File.Delete(name); }
 
     }
 }

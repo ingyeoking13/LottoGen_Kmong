@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LottoGen_Kmong.Services;
+using System;
 
 namespace LottoGen_Kmong.LottoLogic
 {
@@ -17,7 +18,7 @@ namespace LottoGen_Kmong.LottoLogic
             get => extract;
             set
             {
-                if (value == 0) throw new System.Exception("게임의 유형을 입력해주세요." + Environment.NewLine+ "  또는 게임의 유형이 0이 될 수 없습니다.");
+                if (value == 0)  ExceptionDialogService.getInstance().showMessageAndAllert("게임의 유형을 입력해주세요." + Environment.NewLine+ "  또는 게임의 유형이 0이 될 수 없습니다.");
                 extract = value;
             }
         }
@@ -26,7 +27,7 @@ namespace LottoGen_Kmong.LottoLogic
             get => range;
             set
             {
-                if (value == 0) throw new System.Exception("게임의 유형을 입력해주세요." + Environment.NewLine+ "  또는 게임의 유형이 0이 될 수 없습니다.");
+                if (value == 0)  ExceptionDialogService.getInstance().showMessageAndAllert("게임의 유형을 입력해주세요." + Environment.NewLine+ "  또는 게임의 유형이 0이 될 수 없습니다.");
                 range = value;
             }
         }

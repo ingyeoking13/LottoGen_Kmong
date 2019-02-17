@@ -9,15 +9,18 @@ namespace LottoGen_Kmong.LottoLogic
         public ILogicWithNumberSet LogicWithNumberSet;
         public ICollection<string> fileSet = new List<string>();
 
+        public IFilesListHave filesListHave;
+
         /// <summary>
         /// 데이터를 처리하는 logic의 생성자입니다.
         /// </summary>
         /// <param name="logicWithNumberSet">Logic을 지정해주세요.</param>
         /// <param name="writerDoWrite">writer 클래스의 write 메서드를 지정해주세요.</param>
-        public abstractLottologic(ILogicWithNumberSet logicWithNumberSet, Action<IEnumerable<byte>> writerDoWrite)
+        public abstractLottologic(ILogicWithNumberSet logicWithNumberSet, Action<IEnumerable<byte>> writerDoWrite, IFilesListHave filesListHave)
         {
             LogicWithNumberSet = logicWithNumberSet;
             this.writerDoWrite = writerDoWrite;
+            this.filesListHave = filesListHave;
             LogicWithNumberSet.SendResult += giveListToNotepadWriter;
         }
 

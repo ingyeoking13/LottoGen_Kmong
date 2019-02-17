@@ -67,6 +67,5 @@ namespace LottoGen_Kmong.Helper
                 File.Delete(file);
             }
         }
-
     }
 }

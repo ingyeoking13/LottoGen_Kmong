@@ -3,15 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using LottoGen_Kmong.NotePadWriterANDReader;
+using LottoGen_Kmong.Services;
 
 namespace LottoGen_Kmong.NotePadWriterANDReader
 {
     public class notePadWriter : notePadAccessor
     {
         private StreamWriter fileWriter;
-        private static int HIT = (int)2e6;
+        private static int HIT = (int)1e6;
         private int _hit = 0;
-        private const long FILESIZEMAX = 214748364; // 200MB to Bytes
 
         public notePadWriter(string filePath)
         {
@@ -31,21 +31,13 @@ namespace LottoGen_Kmong.NotePadWriterANDReader
             }
             fileWriter.WriteLine();
             _hit++;
-            if (_hit > HIT)
+            if (_hit == HIT) 
             { 
-                if (CheckFileSizeTooBig())
-                {
-                    IncreaseFileName();
-                    Console.WriteLine("HIT 200MB!");
-                    Console.WriteLine($"{FilePath}를 생성했습니다.");
-                }
+                IncreaseFileName();
+                Logger.getInstance().writerFile($"HIT {_hit} 갯수!");
+                Logger.getInstance().writerFile($"{FilePath}를 생성했습니다.");
                 _hit = 0;
             }
-        }
-
-        private bool CheckFileSizeTooBig()
-        {
-            return new FileInfo(FilePath).Length >= FILESIZEMAX;
         }
 
         private void CheckIfFileExistOrDeleteItAndSetIt(string name)
@@ -68,6 +60,5 @@ namespace LottoGen_Kmong.NotePadWriterANDReader
             + ".txt";
             CheckIfFileExistOrDeleteItAndSetIt(newFilePath);
         }
-
     }
 }

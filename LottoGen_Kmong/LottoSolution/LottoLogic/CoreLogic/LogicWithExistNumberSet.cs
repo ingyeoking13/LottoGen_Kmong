@@ -23,31 +23,24 @@ namespace LottoGen_Kmong.LottoLogic
             Wanna_Set = wanna_Set;
         }
 
-        public notePadLineReader lineReader = new notePadLineReader();
-
         public void Calculate() { throw new NotImplementedException(); }
-
-        public void CalcuateWithExistNumberset(StreamReader streamReader)
+        public void CalcuateWithExistNumberset(IEnumerable<byte> intArray)
         {
+            int hit = 0;
 
-            foreach (var intArray in lineReader.ReturnGame(streamReader))
+            foreach( var i in intArray)
             {
-                var i = intArray.GetEnumerator();
-                int hit = 0;
-                do
+                int length = Wanna_Set.Count();
+                for (int j = 0; j < length; j++)
                 {
-                    int length = Wanna_Set.Count();
-                    for (int j = 0; j < length; j++)
-                    {
-                        if (i.Current == Wanna_Set.ElementAt(j)) hit++;
-                    }
-                } while (i.MoveNext());
-
-                if (hit >= Minmax_rule.min && hit <= minmax_rule.max )
-                {
-                    sendResult(intArray);
+                    if (i == (byte)Wanna_Set.ElementAt(j)) hit++;
                 }
             };
+
+            if (hit >= Minmax_rule.min && hit <= minmax_rule.max )
+            {
+                sendResult(intArray);
+            }
 
         }
     }
