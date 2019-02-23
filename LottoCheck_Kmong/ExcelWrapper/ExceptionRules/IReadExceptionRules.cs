@@ -1,4 +1,5 @@
 ﻿using LottoCheck_Kmong.Services;
+using System;
 
 namespace LottoCheck_Kmong.ExcelWrapper.ExceptionRules
 {
@@ -38,7 +39,7 @@ namespace LottoCheck_Kmong.ExcelWrapper.ExceptionRules
         }
     }
 
-    public class noNegativereadException : IReadExceptionRules
+    public class noNegativereadException : IReadExceptionRules 
     {
         IReadExceptionRules readExceptionRule;
 
@@ -46,7 +47,7 @@ namespace LottoCheck_Kmong.ExcelWrapper.ExceptionRules
 
         public bool checkWithValue(object value, string name)
         {
-            if ((byte)value < 0 || readExceptionRule.checkWithValue(value, name))
+            if ((int)value < 0 || readExceptionRule.checkWithValue(value, name))
             {
                 string message = $"UNKOWN ERROR FROM {name}";
                 if (name == "ReturnNumberSetAndMinMax") message = "게임 set은 숫자 외의 문자이거나, 음수 일 수 없습니다.";

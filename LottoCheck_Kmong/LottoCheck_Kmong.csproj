@@ -58,7 +58,6 @@
     <Compile Include="ExcelWrapper\ExcelintWriter.cs" />
     <Compile Include="ExcelWrapper\StartExcelReadPosition.cs" />
     <Compile Include="Helper\IntToStringConversionByBase.cs" />
-    <Compile Include="Helper\WriterMover.cs" />
     <Compile Include="LottoCheckSolution\coreLogic\ILottoLogic.cs" />
     <Compile Include="LottoCheckSolution\coreLogic\LottoLogicWithCheck.cs" />
     <Compile Include="LottoCheckSolution\LottoCheckerLogic.cs" />
